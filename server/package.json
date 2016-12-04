@@ -1,0 +1,36 @@
+{
+  "name": "virtuoso",
+  "version": "1.0.0",
+  "description": "client video conference and chat app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server",
+    "test": "node test",
+    "test-watch": "nodemon test"
+  },
+  "keywords": [
+    "virtuoso"
+  ],
+  "author": "schumanzhang",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.15.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-register": "^6.18.0",
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "express-validator": "^2.21.0",
+    "lodash": "^4.16.6",
+    "mongoose": "^4.6.8",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2",
+    "nodemon": "^1.11.0"
+  }
+}
