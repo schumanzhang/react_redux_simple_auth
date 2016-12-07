@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var User = require('./user');
 
 var UserProfileSchema = mongoose.Schema({
    company: String,
@@ -10,10 +11,22 @@ var UserProfileSchema = mongoose.Schema({
 
 var Profile = module.exports = mongoose.model('Profile', UserProfileSchema);
 
-//create Profile
-module.exports.createProfile = function(newProfile, callback) {
-	newProfile.save(callback);
+// add Profile info
+
+module.exports.updateProfile = function(newProfile, email, callback) {
+    newProfile.save().then(function (result) {
+        User.findOneAndUpdate({email: email}, {$push:{profile: newProfile}}, {new: true}, function(err, doc){
+		    callback(err, doc);
+	    });
+    });
 }
+
+    /*
+	User.findOneAndUpdate({email: email}, {$set:{profile: newProfile}}, {new: true}, function(err, doc){
+		callback(err, doc);
+	});
+    */
+
 
 
 

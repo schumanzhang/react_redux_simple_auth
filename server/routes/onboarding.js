@@ -24,8 +24,17 @@ router
             contact: req.body.contact
         });
         
-        Profile.createProfile(newProfile, function(err, profile) {
-            console.log('profile added:', profile);
+        //we are not passing email in!
+        Profile.updateProfile(newProfile, function(err, profile) {
+            if (profile) {
+                console.log('profile details updated');
+                res.send(200, 'profile details updated');
+                res.json(profile);
+            } else {
+                console.log('error occured');
+                res.send(400, 'error occured');
+                res.json(err);
+            }
         });  
     });
 
@@ -38,5 +47,6 @@ function requireAuth(req, res, next) {
     }
 }
 
+module.exports = router;
 
 //Add white labelling options later

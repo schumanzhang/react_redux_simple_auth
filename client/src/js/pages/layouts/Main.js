@@ -2,6 +2,9 @@ import React from "react";
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
+import Footer from "../../components/navigation/Footer";
+import Nav from "../../components/navigation/Nav";
+
 @connect((store) => {
   return {
     user: store.auth.user,
@@ -27,11 +30,20 @@ export default class Main extends React.Component {
         this.props.dispatch(checkUser());
     }
 
-     render(){
+    render(){
+        const { location } = this.props;
         return (
-         <div>
-            <h1>This is the main app section</h1>
-         </div>
+             <div>
+             <div id="wrapper">
+                <Nav location={location} />
+                     <div id="page-wrapper">
+                        <div className="container-fluid">
+                            {this.props.children}
+                        </div>
+                     </div>
+                <Footer/>
+            </div>
+            </div>
         );
     }
 

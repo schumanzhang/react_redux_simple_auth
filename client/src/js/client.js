@@ -15,6 +15,8 @@ import Conference from "./pages/layouts/Conference";
 import Dashboard from "./pages/layouts/Dashboard";
 import Schedule from "./pages/layouts/Schedule";
 import Onboarding from "./pages/layouts/Onboarding";
+import General from "./components/onboarding/General";
+import Invite from "./components/onboarding/Invite";
 
 
 //functions

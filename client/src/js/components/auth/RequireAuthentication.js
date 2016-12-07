@@ -14,7 +14,6 @@ export function requireAuthentication(Component) {
         }
 
         componentWillReceiveProps (nextProps) {
-            console.log('received new props', nextProps);
             if (nextProps.isAuthenticated !== true) {
                 this.props.dispatch(push('/login'));
             }
@@ -26,10 +25,11 @@ export function requireAuthentication(Component) {
         }
 
         render () {
+            const child = this.props.children;
             return (
                 <div>
                     {this.props.isAuthenticated === true
-                        ? <Component/>
+                        ? <Component childRoutes={child}/>
                         : null
                     }
                 </div>
