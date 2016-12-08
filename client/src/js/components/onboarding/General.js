@@ -43,17 +43,19 @@ const validate = values => {
 @connect((store) => {
   return {
     profileInfo: store.onboard.profileInfo,
-    updatedProfileInfo: store.onboard.updated
+    updatedProfileInfo: store.onboard.updated,
+    user:store.auth.user
   };
 })
 export default class General extends React.Component {
 
     updateProfile(data) {
+        data._id = this.props.user._id;
         this.props.dispatch(updateProfile(data));
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('next props:', nextProps);
+        //console.log('next props:', nextProps);
         if (nextProps.updatedProfileInfo === true) {
             this.props.dispatch(push('/onboarding/invite'));
         }
@@ -64,11 +66,11 @@ export default class General extends React.Component {
 
         return (
             <div>
-                <div class="row m-t-30 m-b-40">
+                <div className="row m-t-30 m-b-40">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <div class="white-box m-t-30">
-                            <h3 class="box-title m-b-0">Please let us know a bit about you...</h3>
-                            <p class="text-muted m-b-30 font-13">We can better tailor your experience</p>
+                        <div className="white-box m-t-30">
+                            <h3 className="box-title m-b-0">Please let us know a bit about you...</h3>
+                            <p className="text-muted m-b-30 font-13">We can better tailor your experience</p>
                             <form className="form-horizontal" onSubmit={handleSubmit(this.updateProfile.bind(this))}> 
                                 <Field name="company" type="text" component={renderField} placeholder="Company name" label="Name of company"/>
                                 <Field name="type" type="select" component={renderField} label="Type of business"/>

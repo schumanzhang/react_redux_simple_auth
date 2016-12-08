@@ -31,13 +31,13 @@ ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/main" component={requireAuthentication(Main)}>
             <IndexRoute component={Dashboard}></IndexRoute>
-            <Route path="/clients" name="clients" component={Clients}></Route>
-            <Route path="/conference" name="conference" component={Conference}></Route>
-            <Route path="/schedule" name="schedule" component={Schedule}></Route>
+            <Route path="clients" name="clients" component={Clients}></Route>
+            <Route path="conference" name="conference" component={Conference}></Route>
+            <Route path="schedule" name="schedule" component={Schedule}></Route>
         </Route>
         <Route path="/onboarding" component={requireAuthentication(Onboarding)}>
              <IndexRoute component={General}></IndexRoute>
-             <Route path="/invite" name="invite" component={Invite}></Route>
+             <Route path="invite" name="invite" component={Invite}></Route>
         </Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/register" component={Register}></Route>

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-var Profile = require('./profile');
+var profileSchema = require('./profile');
+var Client = require('./client');
 
-//user Schema
 var UserSchema = mongoose.Schema({
     email: String,
 	username: String,
@@ -10,10 +10,11 @@ var UserSchema = mongoose.Schema({
 	firstname: String,
     lastname: String,
     roles: [String],
-	profile: {
+	clients: {
 		type: mongoose.Schema.Types.ObjectId, 
-      	ref: 'Profile'
-	}
+      	ref: 'Client'
+	},
+	profile: [profileSchema]
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);

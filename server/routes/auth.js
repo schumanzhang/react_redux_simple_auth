@@ -21,6 +21,7 @@ router
             res.send(400, "passwords don't match");
             return;
         }
+        console.log('User:', User);
         User.getUserByEmail(req.body.email, function(err, user){
             if(user) {
                 res.send(400, "there's already a user with this email address");
@@ -38,7 +39,7 @@ router
         });
         
         User.createUser(newUser, function(err, user) {
-            console.log('added user:', user);
+            //console.log('added user:', user);
             if(err) throw err;
             req.login(user, function(err) { //passport method      
                 if(err) {

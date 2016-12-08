@@ -16,17 +16,29 @@ router
 
     .post('/profile', function(req, res) {
         //add field validations here
-        var newProfile = new Profile({
+        console.log('update profile:', req.body);
+        req.checkBody("company", "required field").notEmpty();
+        req.checkBody("type", "required field").notEmpty();
+        req.checkBody("description", "required field").notEmpty();
+        req.checkBody("employees", "required field").notEmpty();
+        req.checkBody("contact", "required field").notEmpty();
+        //req.checkBody("email", "Email address must be valid").notEmpty().isEmail();
+        var validationErrors = req.validationErrors();
+        if (validationErrors) {
+            res.send(400, validationErrors);
+            return;
+        }
+
+        var newProfile = {
             company: req.body.company,
             type: req.body.type,
             description: req.body.description,
             employees: req.body.employees,
             contact: req.body.contact
-        });
+        };
         
-        //we are not passing email in!
-        Profile.updateProfile(newProfile, function(err, profile) {
-            if (profile) {
+        Profile.updateProfile(newProfile, req.body._id, User, function(profile, err) {
+            if (profile !== null) {
                 console.log('profile details updated');
                 res.send(200, 'profile details updated');
                 res.json(profile);

@@ -5,6 +5,7 @@ const passport = require('passport');
 const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/virtuoso');
 require('./passport');
 
