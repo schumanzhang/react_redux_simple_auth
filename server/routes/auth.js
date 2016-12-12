@@ -56,8 +56,9 @@ router
     })
 
     .post('/logout', (req, res) => {
-        //console.log(req);
+        console.log('logging out user');
         req.session.destroy();
+        res.send('0');
     })
 
     .post('/checkUser', (req, res) => {

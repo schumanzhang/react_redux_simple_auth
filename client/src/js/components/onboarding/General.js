@@ -55,7 +55,6 @@ export default class General extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        //console.log('next props:', nextProps);
         if (nextProps.updatedProfileInfo === true) {
             this.props.dispatch(push('/onboarding/invite'));
         }

@@ -40,7 +40,7 @@ export default function reducer(state = {
             }
         }
         case "GET_USER": {
-            return {...state, isAuthenticating: true }
+            return {...state}
         }
         case "GET_USER_REJECTED": {
             return {...state, isAuthenticating: false, error: action.payload}
@@ -62,6 +62,20 @@ export default function reducer(state = {
                     authenticated: true,
                     user: action.payload
                 }
+            }
+        }
+        case "LOGGING_OUT": {
+            return {...state, authenticated: true }
+        }
+        case "LOGOUT_USER_REJECTED": {
+            return {...state, authenticated: true, error: action.payload}
+        }
+        case "LOGOUT_USER_FULFILLED": {
+            return {
+                ...state,
+                sent: true,
+                authenticated: false,
+                user: action.payload
             }
         }
     }

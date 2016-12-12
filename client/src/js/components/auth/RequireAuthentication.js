@@ -9,15 +9,24 @@ export function requireAuthentication(Component) {
 
     class AuthenticatedComponent extends React.Component {
 
-        componentWillMount () {
-            this.checkAuth();
+        componentWillMount() {
+            console.log('props:', this.props);
+            if (this.props.currentUser === 0) {
+                this.props.dispatch(push('/login'));
+            } else {
+                this.checkAuth();
+            }
+        }
+
+        sendToLoginPage() {
+            this.props.dispatch(push('/login'));
         }
 
         componentWillReceiveProps (nextProps) {
+            console.log('nextProps:', nextProps);
             if (nextProps.isAuthenticated !== true) {
                 this.props.dispatch(push('/login'));
             }
-            //send to either onboarding or main?
         }
 
         checkAuth () {
@@ -30,7 +39,7 @@ export function requireAuthentication(Component) {
                 <div>
                     {this.props.isAuthenticated === true
                         ? <Component childRoutes={child}/>
-                        : null
+                        : this.sendToLoginPage.bind(this)
                     }
                 </div>
             )

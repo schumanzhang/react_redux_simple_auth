@@ -16,15 +16,12 @@ export default class Onboarding extends React.Component {
 
     componentWillMount() {
         //check if onboarded or not, either go to onboarding or main
-        this.checkCurrentUser();
-    }
-
-    checkCurrentUser() {
-        this.props.dispatch(checkUser());
+        if (this.props.user.profile.length !== 0) {
+            this.props.dispatch(push('/main'));
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        //either go to onboarding or main
     }
 
     render() {

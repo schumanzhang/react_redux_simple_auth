@@ -44,7 +44,8 @@ const validate = values => {
 @connect((store) => {
   return {
     user: store.auth.user,
-    userFetched: store.auth.authenticated
+    userFetched: store.auth.authenticated,
+    userError: store.auth.error
   };
 })
 export default class Register extends React.Component {
@@ -53,7 +54,6 @@ export default class Register extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-    // You don't have to do this check first, but it can help prevent an unneeded render
         if (nextProps.userFetched === true) {
             this.props.dispatch(push('/onboarding'));
         }
@@ -65,6 +65,7 @@ export default class Register extends React.Component {
 
     render(){
         const { handleSubmit, pristine, reset, submitting, errors } = this.props;
+        var errorMessage = 'Registration failed, there may already an account with this email address...';
 
         return (
             <section className="blue-backdrop">
@@ -88,6 +89,9 @@ export default class Register extends React.Component {
                             </div>
                             </div>
                         </form>
+                        <div>
+                        {this.props.userError !== null ? <div className="help-block has-error text-center">{errorMessage}</div> : ''}
+                        </div>
                     </div>
                 </div>
             </section>

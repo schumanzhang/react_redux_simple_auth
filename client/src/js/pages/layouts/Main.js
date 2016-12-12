@@ -33,14 +33,10 @@ export default class Main extends React.Component {
     render(){
         const { location } = this.props;
         return (
-             <div>
-             <div id="wrapper">
-                <Nav location={location} />
-                     <div id="page-wrapper">
-                        <div className="container-fluid">
-                            {this.props.children}
-                        </div>
-                     </div>
+            <div>
+            <div id="wrapper">
+                <Nav location={location}/>
+                    {this.props.childRoutes}
                 <Footer/>
             </div>
             </div>

@@ -32,7 +32,8 @@ const validate = values => {
 @connect((store) => {
   return {
     user: store.auth.user,
-    userFetched: store.auth.authenticated
+    userFetched: store.auth.authenticated,
+    userError: store.auth.error
   };
 })
 export default class Login extends React.Component {
@@ -49,6 +50,7 @@ export default class Login extends React.Component {
 
     render(){
         const { handleSubmit, pristine, reset, submitting, errors } = this.props;
+        var errorMessage = 'Your user credentials are incorrect...';
 
         return (
             <section class="blue-backdrop">
@@ -73,6 +75,10 @@ export default class Login extends React.Component {
                         </div>
                         </div>
                     </form>
+                    <div>
+                    {this.props.userError !== null ? <div className="help-block has-error text-center">{errorMessage}</div> : ''}
+                    </div>
+
                     </div>
                 </div>
             </section>   

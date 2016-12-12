@@ -30,7 +30,6 @@ export function register(data) {
 };
 
 export function checkUser() {
-    console.log('check current user...');
     return function(dispatch) {
         dispatch({type: "GET_USER"});
         axios.post(devEndpoint + '/checkUser')
@@ -44,6 +43,15 @@ export function checkUser() {
 };
 
 export function logout() {
-
+    return function(dispatch) {
+        dispatch({type: "LOGGING_OUT"});
+        axios.post(devEndpoint + '/logout')
+            .then((response) => {
+                dispatch({type: "LOGOUT_USER_FULFILLED", payload: response.data})
+            })
+            .catch((err) => {
+                dispatch({type: "LOGOUT_USER_REJECTED", payload: err})
+            })
+    }
 }
 
