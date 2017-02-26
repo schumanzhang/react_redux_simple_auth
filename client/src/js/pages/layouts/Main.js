@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import Footer from "../../components/navigation/Footer";
+import Footer2 from "../../components/navigation/Footer2";
 import Nav from "../../components/navigation/Nav";
+import Sidebar from "../../components/navigation/Sidebar";
 
 @connect((store) => {
   return {
@@ -34,11 +35,16 @@ export default class Main extends React.Component {
         const { location } = this.props;
         return (
             <div>
-            <div id="wrapper">
-                <Nav location={location}/>
-                    {this.props.childRoutes}
-                <Footer/>
-            </div>
+                <div id="wrapper">
+                    <Nav location={location}/>
+                    <Sidebar location={location}/>
+                        <div id="page-wrapper">
+                            <div className="container-fluid">
+                                {this.props.childRoutes}
+                            </div>
+                        </div>
+                    <Footer2/>
+                </div>
             </div>
         );
     }

@@ -42,3 +42,7 @@ html {
 #wrapper {
     background-color: #edf1f5;
 }
+
+#page-wrapper {
+    min-height: 650px;
+}
